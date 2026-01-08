@@ -22,28 +22,15 @@ int main(){
             bfs.push(u);
         }
     }
- 
     int ancestor[n][18];
-    for(int i=0;i<n;i++){
-        ancestor[i][0]=boss[i];
-    }
-    for(int j=1;j<18;j++){
-        for(int i=0;i<n;i++){
-            ancestor[i][j]=ancestor[ancestor[i][j-1]][j-1];
-        }
-    }
+    for(int i=0;i<n;i++)ancestor[i][0]=boss[i];
+    for(int j=1;j<18;j++)for(int i=0;i<n;i++)ancestor[i][j]=ancestor[ancestor[i][j-1]][j-1];
     while(q--){
         scanf("%d%d",&a,&b);
         a--;b--;
-        if(level[a]<level[b]){
-            swap(a,b);
-        }
+        if(level[a]<level[b])swap(a,b);
         int cantianivelar=level[a]-level[b];
-        for(int i=0;i<18;i++){
-            if(cantianivelar&(1<<i)){
-                a=ancestor[a][i];
-            }
-        }
+        for(int i=0;i<18;i++)if(cantianivelar&(1<<i))a=ancestor[a][i];
         int l=0,r=level[a];
         while(l<r){
             int mid=(l+r)>>1;
@@ -54,17 +41,10 @@ int main(){
                     bb=ancestor[bb][i];
                 }
             }
-            if(aa==bb){
-                r=mid;
-            }else{
-                l=mid+1;
-            }
+            if(aa==bb)r=mid;
+            else l=mid+1;
         }
-        for(int i=0;i<18;i++){
-            if(l&(1<<i)){
-                a=ancestor[a][i];
-            }
-        }
+        for(int i=0;i<18;i++)if(l&(1<<i))a=ancestor[a][i];
         printf("%d\n",a+1);
     }
 }

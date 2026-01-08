@@ -17,7 +17,7 @@ int main(){
                 mcd=0;
                 for(int j=1;j<n/x;j++){
                     for(int k=0;k<x;k++){
-                        mcd=gcd(mcd,nums[j*x+k]-nums[(j-1)*x+k]);
+                        mcd=__gcd(mcd,nums[j*x+k]-nums[(j-1)*x+k]);
                     }
                 }
                 if(mcd!=1){
@@ -30,7 +30,7 @@ int main(){
                 x=n/x;
                 for(int j=1;j<n/x;j++){
                     for(int k=0;k<x;k++){
-                        mcd=gcd(mcd,nums[j*x+k]-nums[(j-1)*x+k]);
+                        mcd=__gcd(mcd,nums[j*x+k]-nums[(j-1)*x+k]);
                     }
                 }
                 if(mcd!=1){
